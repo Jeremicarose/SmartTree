@@ -5,11 +5,11 @@ contract("TreeNFT", (accounts) => {
   const tokenID = 1;
   const species = "Maple";
   const age = 10;
-  const location = "Kenya";
+  const location = "123 Main St.";
   const proofOfPlant = "QmXfGHQ2KbDTmHNRQ2z1YjuF9KoUbW6TjJLwN4sNpL8y4W";
   const proofOfLife = "QmXfGHQ2KbDTmHNRQ2z1YjuF9KoUbW6TjJLwN4sNpL8y4L";
   let treeNFT;
-S
+
   beforeEach(async () => {
     treeNFT = await TreeNFT.new();
   });

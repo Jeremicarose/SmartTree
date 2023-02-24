@@ -39,14 +39,10 @@ contract TreeNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
         __Ownable_init();
     }
 
-     function _setTreeInfo(uint256 tokenId, Tree memory tree) internal onlyOwner {
-        _treeInfo[tokenId] = tree;
-    }
-
     // Mint a new tree NFT
     function mint(address to, uint256 tokenId, string memory species, uint256 age, string memory location, string memory proofOfPlant, string memory proofOfLife) public onlyOwner {
         _mint(to, tokenId);
-         _setTreeInfo(tokenId, Tree(species, age, location, proofOfPlant, proofOfLife));
+         (string memory species, uint256 age, string memory location, string memory proofOfPlant, string memory proofOfLife) = getTreeInfo(tokenId);
         emit TreeMinted(to, tokenId, species, age, location);
     }
 
@@ -72,9 +68,9 @@ contract TreeNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
     }
 
     // Update the proof of life for a given token ID
-    function updateProofOfLife(uint256 tokenId, string memory newProofOfLife) public onlyOwner {
-        require(_exists(tokenId), "Token ID does not exist");
-        _treeInfo[tokenId].proofOfLife = newProofOfLife;
+        function updateProofOfLife(uint256 tokenId, string memory newProofOfLife) public onlyOwner {
+            require(_exists(tokenId), "Token ID does notexist");
+           _treeInfo[tokenId].proofOfLife = newProofOfLife;
           emit TreeProofOfLifeUpdated(ownerOf(tokenId), tokenId, newProofOfLife);
     }
 }

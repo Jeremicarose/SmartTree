@@ -39,14 +39,11 @@ contract TreeNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
         __Ownable_init();
     }
 
-     function _setTreeInfo(uint256 tokenId, Tree memory tree) internal onlyOwner {
-        _treeInfo[tokenId] = tree;
-    }
-
     // Mint a new tree NFT
     function mint(address to, uint256 tokenId, string memory species, uint256 age, string memory location, string memory proofOfPlant, string memory proofOfLife) public onlyOwner {
         _mint(to, tokenId);
-         _setTreeInfo(tokenId, Tree(species, age, location, proofOfPlant, proofOfLife));
+        
+        _setTreeInfo(tokenId, Tree(species, age, location, proofOfPlant, proofOfLife));
         emit TreeMinted(to, tokenId, species, age, location);
     }
 
